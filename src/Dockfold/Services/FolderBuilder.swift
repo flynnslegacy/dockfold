@@ -38,6 +38,8 @@ struct FolderBuilder: FolderBuilding {
         let staging = directory.appendingPathComponent(".staging-\(UUID().uuidString).app", isDirectory: true)
         defer { try? fileManager.removeItem(at: staging) }
         try fileManager.copyItem(at: templateURL, to: staging)
+        // A downloaded Dockfold is quarantined, and so would be this copy once its signature changes.
+        Quarantine.strip(at: staging)
         try customise(staging, for: folder)
         if fileManager.fileExists(atPath: bundle.path) {
             _ = try fileManager.replaceItemAt(bundle, withItemAt: staging)

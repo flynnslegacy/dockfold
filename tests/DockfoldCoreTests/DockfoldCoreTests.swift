@@ -242,3 +242,24 @@ final class FolderModelTests: XCTestCase {
         XCTAssertEqual(try store.load(), state)
     }
 }
+
+final class QuarantineTests: XCTestCase {
+    func testStripRemovesTheAttributeFromABundleAndItsContents() throws {
+        let bundle = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".app")
+        defer { try? FileManager.default.removeItem(at: bundle) }
+        let binary = bundle.appendingPathComponent("Contents/MacOS/Launcher")
+        try FileManager.default.createDirectory(at: binary.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try Data("x".utf8).write(to: binary)
+        let value = Array("0081;00000000;Safari;".utf8)
+        for url in [bundle, binary] {
+            XCTAssertEqual(setxattr(url.path, Quarantine.attribute, value, value.count, 0, 0), 0)
+        }
+        XCTAssertTrue(Quarantine.isQuarantined(binary))
+
+        XCTAssertEqual(Quarantine.strip(at: bundle), 2)
+
+        XCTAssertFalse(Quarantine.isQuarantined(bundle))
+        XCTAssertFalse(Quarantine.isQuarantined(binary))
+        XCTAssertEqual(Quarantine.strip(at: bundle), 0)
+    }
+}

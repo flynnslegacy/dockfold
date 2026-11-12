@@ -13,6 +13,10 @@
   macOS 14+ · Swift / SwiftUI · aucune dépendance · aucune requête réseau
 </p>
 
+<p align="center">
+  <a href="https://buymeacoffee.com/davidmarkowicz">☕ M'offrir un café</a>
+</p>
+
 ---
 
 ## Le principe
@@ -60,9 +64,11 @@ On crée et on modifie les dossiers dans la fenêtre de Dockfold, puis on clique
 
 ## Installation
 
-Dockfold n'est pas distribué en binaire signé : on le compile soi-même (2 minutes).
+**Télécharger** : prenez le fichier `Dockfold-x.y.z.dmg` de la [dernière version](https://github.com/flynnslegacy/dockfold/releases/latest), ouvrez-le et glissez Dockfold dans Applications. L'app est signée et notarisée par Apple : elle s'ouvre sans avertissement de sécurité. Elle fonctionne sur macOS 14 ou plus récent, sur les Mac Apple silicon comme Intel.
 
-**Prérequis** : macOS 14 ou plus récent, Xcode ou les Command Line Tools (Swift 5.10+).
+Dockfold n'est pas sur le Mac App Store : Apple y impose un « bac à sable » qui interdit de modifier le Dock et de créer les petites apps qui servent de dossiers.
+
+**Compiler soi-même** (Xcode ou les Command Line Tools, Swift 5.10+) :
 
 ```bash
 git clone https://github.com/flynnslegacy/dockfold.git
@@ -72,6 +78,8 @@ scripts/build-app.sh --install  # ou : copie dans /Applications et lance l'app
 ```
 
 Aucune autorisation n'est demandée : Dockfold ne lit que la liste des apps du Dock et les icônes des apps.
+
+**Publier une version** (signature Developer ID, notarisation, DMG) : `scripts/release.sh 1.0.0`. Les prérequis sont décrits en tête du script.
 
 **Tests** :
 
@@ -130,6 +138,10 @@ Le lanceur est une app « agent » (`LSUIElement`) : il n'a pas de point « app 
 - Aucune analyse, aucun pistage, aucune requête réseau.
 - Dockfold ne lit et ne modifie que les préférences du Dock.
 - Les dossiers et la sauvegarde du Dock restent dans `~/Library/Application Support/Dockfold`, sur votre Mac.
+
+## Soutenir
+
+Dockfold est gratuit. S'il vous rend service, vous pouvez [m'offrir un café sur Buy Me a Coffee](https://buymeacoffee.com/davidmarkowicz) ☕. Le lien se trouve aussi dans l'app : menu Dockfold › « Faire un don ❤️ », ou en bas de la liste des dossiers.
 
 ## Licence
 

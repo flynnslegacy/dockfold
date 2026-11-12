@@ -36,6 +36,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
+
+    @objc func openDonationPage(_ sender: Any?) {
+        Support.openDonationPage()
+    }
+}
+
+/// Dockfold is free; a donation link lets people say thanks.
+enum Support {
+    static let donationURL = URL(string: "https://buymeacoffee.com/davidmarkowicz")!
+
+    @MainActor
+    static func openDonationPage() {
+        NSWorkspace.shared.open(donationURL)
+    }
 }
 
 enum MainMenu {
@@ -44,6 +58,8 @@ enum MainMenu {
 
         let appMenu = NSMenu()
         appMenu.addItem(withTitle: "À propos de Dockfold", action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
+        // Nil target: the action reaches the app delegate through the responder chain.
+        appMenu.addItem(withTitle: "Faire un don ❤️", action: #selector(AppDelegate.openDonationPage(_:)), keyEquivalent: "")
         appMenu.addItem(.separator())
         appMenu.addItem(withTitle: "Masquer Dockfold", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
         appMenu.addItem(withTitle: "Quitter Dockfold", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")

@@ -46,6 +46,17 @@ struct FolderSidebar: View {
         .onDeleteCommand {
             if let id = model.selection { model.deleteFolder(id) }
         }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            Button { Support.openDonationPage() } label: {
+                Label("Faire un don ❤️", systemImage: "cup.and.saucer.fill")
+            }
+            .buttonStyle(.borderless)
+            .foregroundStyle(.secondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .help("Dockfold est gratuit. Si tu l'aimes, tu peux m'offrir un café sur Buy Me a Coffee.")
+        }
         .toolbar {
             ToolbarItemGroup {
                 Button { model.addFolder() } label: { Label("Nouveau dossier", systemImage: "plus") }
