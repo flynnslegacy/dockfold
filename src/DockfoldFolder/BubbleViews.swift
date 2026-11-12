@@ -1,5 +1,5 @@
 import AppKit
-import NidoCore
+import DockfoldCore
 
 /// Borderless floating panel that can take keyboard focus without activating the app.
 final class BubblePanel: NSPanel {

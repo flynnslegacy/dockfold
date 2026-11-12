@@ -1,6 +1,6 @@
 import Foundation
 
-/// What Nido persists: the folders being edited, and the folders last written to the Dock.
+/// What Dockfold persists: the folders being edited, and the folders last written to the Dock.
 public struct StoreState: Codable, Equatable, Sendable {
     public var folders: [DockFolder]
     public var applied: [DockFolder]

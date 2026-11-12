@@ -1,5 +1,5 @@
 import AppKit
-import NidoCore
+import DockfoldCore
 
 final class FolderAppDelegate: NSObject, NSApplicationDelegate {
     private var controller: FolderPanelController?

@@ -1,6 +1,6 @@
 import AppKit
 import CoreServices
-import NidoCore
+import DockfoldCore
 
 /// Turns a folder into a launcher bundle the Dock can hold among the apps.
 protocol FolderBuilding: Sendable {
@@ -13,15 +13,15 @@ struct FolderBuilder: FolderBuilding {
         case missingTemplate
 
         var errorDescription: String? {
-            "le modèle de dossier est introuvable dans Nido.app. Reconstruis l'app avec scripts/build-app.sh."
+            "le modèle de dossier est introuvable dans Dockfold.app. Reconstruis l'app avec scripts/build-app.sh."
         }
     }
 
-    let paths: NidoPaths
+    let paths: DockfoldPaths
     let templateURL: URL?
     private let renderer = IconRenderer()
 
-    init(paths: NidoPaths, templateURL: URL?) {
+    init(paths: DockfoldPaths, templateURL: URL?) {
         self.paths = paths
         self.templateURL = templateURL
     }

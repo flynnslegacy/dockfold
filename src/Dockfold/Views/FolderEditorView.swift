@@ -1,5 +1,5 @@
 import SwiftUI
-import NidoCore
+import DockfoldCore
 
 struct FolderEditorView: View {
     @Binding var folder: DockFolder

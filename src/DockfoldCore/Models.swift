@@ -41,7 +41,7 @@ public struct DockFolder: Codable, Hashable, Identifiable, Sendable {
     }
 
     /// Each folder gets its own launcher identity so LaunchServices never mixes two folders up.
-    public var bundleIdentifier: String { "local.nido.folder." + id.uuidString.lowercased() }
+    public var bundleIdentifier: String { "local.dockfold.folder." + id.uuidString.lowercased() }
 
     public var displayName: String { FolderNaming.displayName(name) }
 
@@ -86,15 +86,15 @@ public enum FolderNaming {
     }
 }
 
-/// Where Nido keeps its data.
-public struct NidoPaths: Sendable {
+/// Where Dockfold keeps its data.
+public struct DockfoldPaths: Sendable {
     public let root: URL
 
     public init(root: URL) { self.root = root }
 
-    public static var standard: NidoPaths {
+    public static var standard: DockfoldPaths {
         let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        return NidoPaths(root: support.appendingPathComponent("Nido", isDirectory: true))
+        return DockfoldPaths(root: support.appendingPathComponent("Dockfold", isDirectory: true))
     }
 
     public var foldersDirectory: URL { root.appendingPathComponent("Folders", isDirectory: true) }

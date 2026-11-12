@@ -1,6 +1,6 @@
 import AppKit
 import SwiftUI
-import NidoCore
+import DockfoldCore
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -10,8 +10,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.mainMenu = MainMenu.make()
 
-        let paths = NidoPaths.standard
-        let template = Bundle.main.url(forResource: "NidoFolder", withExtension: "app")
+        let paths = DockfoldPaths.standard
+        let template = Bundle.main.url(forResource: "DockfoldFolder", withExtension: "app")
         let model = ManagerModel(store: JSONFolderStore(fileURL: paths.storeURL),
                                  dock: DockService(backupURL: paths.dockBackupURL),
                                  builder: FolderBuilder(paths: paths, templateURL: template),
@@ -23,12 +23,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 880, height: 640),
                               styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
                               backing: .buffered, defer: false)
-        window.title = "Nido"
+        window.title = "Dockfold"
         window.contentViewController = hosting
         window.setContentSize(NSSize(width: 880, height: 640))
         window.minSize = NSSize(width: 760, height: 520)
         window.center()
-        window.setFrameAutosaveName("NidoMainWindow")
+        window.setFrameAutosaveName("DockfoldMainWindow")
         window.isReleasedWhenClosed = false
         window.makeKeyAndOrderFront(nil)
         self.window = window
@@ -43,11 +43,11 @@ enum MainMenu {
         let main = NSMenu()
 
         let appMenu = NSMenu()
-        appMenu.addItem(withTitle: "À propos de Nido", action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
+        appMenu.addItem(withTitle: "À propos de Dockfold", action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
         appMenu.addItem(.separator())
-        appMenu.addItem(withTitle: "Masquer Nido", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
-        appMenu.addItem(withTitle: "Quitter Nido", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
-        main.addItem(submenu(appMenu, title: "Nido"))
+        appMenu.addItem(withTitle: "Masquer Dockfold", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
+        appMenu.addItem(withTitle: "Quitter Dockfold", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        main.addItem(submenu(appMenu, title: "Dockfold"))
 
         let edit = NSMenu(title: "Édition")
         edit.addItem(withTitle: "Annuler", action: Selector(("undo:")), keyEquivalent: "z")

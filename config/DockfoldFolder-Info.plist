@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>fr</string>
 	<key>CFBundleExecutable</key>
-	<string>NidoFolder</string>
+	<string>DockfoldFolder</string>
 	<key>CFBundleIconFile</key>
 	<string>FolderIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>local.nido.folder.template</string>
+	<string>local.dockfold.folder.template</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

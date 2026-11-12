@@ -1,6 +1,6 @@
 import XCTest
 import CoreGraphics
-@testable import NidoCore
+@testable import DockfoldCore
 
 final class GridShapeTests: XCTestCase {
     func testSmallFoldersStayOnOneRow() {
@@ -131,7 +131,7 @@ final class DockTilesTests: XCTestCase {
     private let word = "/Applications/Microsoft Word.app"
     private let excel = "/Applications/Microsoft Excel.app"
     private let notion = "/Applications/Notion.app"
-    private let folderDir = "/Users/x/Library/Application Support/Nido/Folders/abc/"
+    private let folderDir = "/Users/x/Library/Application Support/Dockfold/Folders/abc/"
 
     private func tile(_ path: String) -> DockTile {
         DockTiles.makeAppTile(path: path, label: (path as NSString).lastPathComponent, bundleIdentifier: nil)
@@ -140,7 +140,7 @@ final class DockTilesTests: XCTestCase {
     private func paths(_ tiles: [DockTile]) -> [String] { tiles.compactMap(DockTiles.path(of:)) }
 
     private func placement(apps: [String], restore: [FolderApp] = []) -> FolderPlacement {
-        FolderPlacement(bundlePath: folderDir + "Office.app", label: "Office", bundleIdentifier: "local.nido.folder.abc",
+        FolderPlacement(bundlePath: folderDir + "Office.app", label: "Office", bundleIdentifier: "local.dockfold.folder.abc",
                         matchPrefix: folderDir, appPaths: apps, appsToRestore: restore)
     }
 
@@ -222,7 +222,7 @@ final class FolderModelTests: XCTestCase {
 
     func testBundleIdentifierIsStablePerFolder() {
         let id = UUID(uuidString: "6F9619FF-8B86-D011-B42D-00C04FC964FF")!
-        XCTAssertEqual(DockFolder(id: id, name: "x").bundleIdentifier, "local.nido.folder.6f9619ff-8b86-d011-b42d-00c04fc964ff")
+        XCTAssertEqual(DockFolder(id: id, name: "x").bundleIdentifier, "local.dockfold.folder.6f9619ff-8b86-d011-b42d-00c04fc964ff")
     }
 
     func testAppFromURLRejectsNonApplications() {

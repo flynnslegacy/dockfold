@@ -2,19 +2,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "Nido",
+    name: "Dockfold",
     platforms: [.macOS(.v14)],
     products: [
-        .executable(name: "Nido", targets: ["Nido"]),
-        .executable(name: "NidoFolder", targets: ["NidoFolder"])
+        .executable(name: "Dockfold", targets: ["Dockfold"]),
+        .executable(name: "DockfoldFolder", targets: ["DockfoldFolder"])
     ],
     targets: [
-        .target(name: "NidoCore", path: "src/NidoCore"),
+        .target(name: "DockfoldCore", path: "src/DockfoldCore"),
         // Manager app: edits folders, builds their bundles and rewrites the Dock.
-        .executableTarget(name: "Nido", dependencies: ["NidoCore"], path: "src/Nido"),
+        .executableTarget(name: "Dockfold", dependencies: ["DockfoldCore"], path: "src/Dockfold"),
         // Tiny launcher copied once per folder: shows the bubble when its Dock tile is clicked.
-        .executableTarget(name: "NidoFolder", dependencies: ["NidoCore"], path: "src/NidoFolder"),
-        .testTarget(name: "NidoCoreTests", dependencies: ["NidoCore"], path: "tests/NidoCoreTests"),
-        .testTarget(name: "NidoTests", dependencies: ["Nido", "NidoCore"], path: "tests/NidoTests")
+        .executableTarget(name: "DockfoldFolder", dependencies: ["DockfoldCore"], path: "src/DockfoldFolder"),
+        .testTarget(name: "DockfoldCoreTests", dependencies: ["DockfoldCore"], path: "tests/DockfoldCoreTests"),
+        .testTarget(name: "DockfoldTests", dependencies: ["Dockfold", "DockfoldCore"], path: "tests/DockfoldTests")
     ]
 )

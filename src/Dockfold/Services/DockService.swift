@@ -1,5 +1,5 @@
 import Foundation
-import NidoCore
+import DockfoldCore
 
 /// Reads and rewrites the apps pinned in the Dock.
 protocol DockServicing {
@@ -7,7 +7,7 @@ protocol DockServicing {
     func write(_ tiles: [DockTile])
     func restart()
     var hasBackup: Bool { get }
-    /// Saves the Dock as it was before Nido's first change. Later calls keep that first copy.
+    /// Saves the Dock as it was before Dockfold's first change. Later calls keep that first copy.
     func backupIfNeeded(_ tiles: [DockTile]) throws
     func restoreBackup() -> Bool
 }

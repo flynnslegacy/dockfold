@@ -51,7 +51,7 @@ public enum DockTiles {
         return ["tile-data": data, "tile-type": "file-tile", "GUID": Int.random(in: 1..<Int(Int32.max))]
     }
 
-    /// Applications pinned in the Dock, without Nido's own folders.
+    /// Applications pinned in the Dock, without Dockfold's own folders.
     public static func dockApps(in tiles: [DockTile], excludingPrefix prefix: String?) -> [FolderApp] {
         tiles.compactMap { tile in
             guard (tile["tile-type"] as? String ?? "file-tile") == "file-tile",

@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/screenshots/icon.png" width="128" alt="Icône de Nido">
+  <img src="docs/screenshots/icon.png" width="128" alt="Icône de Dockfold">
 </p>
 
-<h1 align="center">Nido</h1>
+<h1 align="center">Dockfold</h1>
 
 <p align="center">
   <b>Des dossiers façon iPhone pour le Dock du Mac.</b><br>
@@ -17,14 +17,14 @@
 
 ## Le principe
 
-Le Dock se remplit vite : on garde des dizaines d'apps sous la main sans vouloir les en retirer. Nido les regroupe dans des **dossiers** :
+Le Dock se remplit vite : on garde des dizaines d'apps sous la main sans vouloir les en retirer. Dockfold les regroupe dans des **dossiers** :
 
 - chaque dossier occupe **une seule place dans le Dock**, au milieu des apps (pas seulement à droite comme les piles de macOS) ;
 - son icône montre les apps qu'il contient en **grille 3×3**, comme sur l'iPhone ;
 - un clic ouvre une **bulle** au-dessus de l'icône avec les apps du dossier ; un clic sur une app la lance.
 
 <p align="center">
-  <img src="docs/screenshots/dock.png" width="620" alt="Un dossier Nido au milieu des apps du Dock">
+  <img src="docs/screenshots/dock.png" width="620" alt="Un dossier Dockfold au milieu des apps du Dock">
 </p>
 
 | L'icône du dossier | La bulle, au clic |
@@ -33,10 +33,10 @@ Le Dock se remplit vite : on garde des dizaines d'apps sous la main sans vouloir
 
 ## L'app de gestion
 
-On crée et on modifie les dossiers dans la fenêtre de Nido, puis on clique sur « Appliquer au Dock ».
+On crée et on modifie les dossiers dans la fenêtre de Dockfold, puis on clique sur « Appliquer au Dock ».
 
 <p align="center">
-  <img src="docs/screenshots/manager.png" width="640" alt="Fenêtre de Nido">
+  <img src="docs/screenshots/manager.png" width="640" alt="Fenêtre de Dockfold">
 </p>
 
 ## Fonctionnalités
@@ -51,7 +51,7 @@ On crée et on modifie les dossiers dans la fenêtre de Nido, puis on clique sur
 - « Appliquer au Dock » place chaque dossier à la place de sa première app et retire du Dock les apps qu'il contient.
 - Un dossier déjà présent garde sa place, même renommé.
 - Supprimer un dossier, ou en retirer une app, remet les apps dans le Dock, là où était le dossier.
-- Avant la première modification, Nido sauvegarde votre Dock ; « Restaurer le Dock d'origine… » le remet exactement comme avant.
+- Avant la première modification, Dockfold sauvegarde votre Dock ; « Restaurer le Dock d'origine… » le remet exactement comme avant.
 
 **La bulle**
 - S'ouvre au-dessus de l'icône cliquée, et s'adapte à un Dock à gauche ou à droite, à l'agrandissement et au masquage automatique.
@@ -60,18 +60,18 @@ On crée et on modifie les dossiers dans la fenêtre de Nido, puis on clique sur
 
 ## Installation
 
-Nido n'est pas distribué en binaire signé : on le compile soi-même (2 minutes).
+Dockfold n'est pas distribué en binaire signé : on le compile soi-même (2 minutes).
 
 **Prérequis** : macOS 14 ou plus récent, Xcode ou les Command Line Tools (Swift 5.10+).
 
 ```bash
-git clone https://github.com/flynnslegacy/nido.git
-cd nido
-scripts/build-app.sh            # crée build/Nido.app
+git clone https://github.com/flynnslegacy/dockfold.git
+cd dockfold
+scripts/build-app.sh            # crée build/Dockfold.app
 scripts/build-app.sh --install  # ou : copie dans /Applications et lance l'app
 ```
 
-Aucune autorisation n'est demandée : Nido ne lit que la liste des apps du Dock et les icônes des apps.
+Aucune autorisation n'est demandée : Dockfold ne lit que la liste des apps du Dock et les icônes des apps.
 
 **Tests** :
 
@@ -79,7 +79,7 @@ Aucune autorisation n'est demandée : Nido ne lit que la liste des apps du Dock 
 swift test
 ```
 
-**Désinstaller** : cliquez sur « Restaurer le Dock d'origine… », quittez Nido, puis supprimez `/Applications/Nido.app` et `~/Library/Application Support/Nido`.
+**Désinstaller** : cliquez sur « Restaurer le Dock d'origine… », quittez Dockfold, puis supprimez `/Applications/Dockfold.app` et `~/Library/Application Support/Dockfold`.
 
 ## Fonctionnement
 
@@ -87,27 +87,27 @@ swift test
 
 ```
 src/
-├── NidoCore/        Logique pure, sans dépendance système (testée)
-│   ├── Models        Dossiers, apps, noms de fichiers sûrs, emplacements
-│   ├── DockTiles     Modifications de la liste des apps du Dock
-│   ├── BubbleLayout  Grille, position de la bulle, forme avec sa flèche, géométrie de l'icône
-│   └── FolderStore   Enregistrement des dossiers (JSON)
-├── Nido/            L'app de gestion
-│   ├── App/          Point d'entrée, menus, modèle de la fenêtre
-│   ├── Services/     Dock, construction des dossiers, dessin des icônes
-│   └── Views/        Fenêtre SwiftUI
-└── NidoFolder/      Le lanceur copié dans chaque dossier (la bulle)
+├── DockfoldCore/       Logique pure, sans dépendance système (testée)
+│   ├── Models          Dossiers, apps, noms de fichiers sûrs, emplacements
+│   ├── DockTiles       Modifications de la liste des apps du Dock
+│   ├── BubbleLayout    Grille, position de la bulle, forme avec sa flèche, géométrie de l'icône
+│   └── FolderStore     Enregistrement des dossiers (JSON)
+├── Dockfold/           L'app de gestion
+│   ├── App/            Point d'entrée, menus, modèle de la fenêtre
+│   ├── Services/       Dock, construction des dossiers, dessin des icônes
+│   └── Views/          Fenêtre SwiftUI
+└── DockfoldFolder/     Le lanceur copié dans chaque dossier (la bulle)
 tests/
-├── NidoCoreTests    Tests de la logique pure
-└── NidoTests        Tests de « Appliquer au Dock » avec un faux Dock
+├── DockfoldCoreTests   Tests de la logique pure
+└── DockfoldTests       Tests de « Appliquer au Dock » avec un faux Dock
 ```
 
 ### Comment un dossier tient dans le Dock
 
 Le Dock n'accepte que des apps dans sa partie gauche. Chaque dossier est donc une **petite app générée** :
 
-1. Nido copie son modèle de lanceur (`NidoFolder.app`) dans `~/Library/Application Support/Nido/Folders/<identifiant>/<Nom>.app`.
-2. Il lui donne un identifiant propre (`local.nido.folder.<uuid>`), le nom du dossier, la liste des apps (`folder.json`) et une icône dessinée pour l'occasion (`.icns`).
+1. Dockfold copie son modèle de lanceur (`DockfoldFolder.app`) dans `~/Library/Application Support/Dockfold/Folders/<identifiant>/<Nom>.app`.
+2. Il lui donne un identifiant propre (`local.dockfold.folder.<uuid>`), le nom du dossier, la liste des apps (`folder.json`) et une icône dessinée pour l'occasion (`.icns`).
 3. Il signe à nouveau le paquet (signature locale « ad hoc ») et l'enregistre auprès de LaunchServices.
 4. Il réécrit la liste `persistent-apps` des préférences du Dock (`com.apple.dock`) puis relance le Dock, qui ne relit ses préférences qu'au démarrage.
 
@@ -128,8 +128,8 @@ Le lanceur est une app « agent » (`LSUIElement`) : il n'a pas de point « app 
 ## Confidentialité
 
 - Aucune analyse, aucun pistage, aucune requête réseau.
-- Nido ne lit et ne modifie que les préférences du Dock.
-- Les dossiers et la sauvegarde du Dock restent dans `~/Library/Application Support/Nido`, sur votre Mac.
+- Dockfold ne lit et ne modifie que les préférences du Dock.
+- Les dossiers et la sauvegarde du Dock restent dans `~/Library/Application Support/Dockfold`, sur votre Mac.
 
 ## Licence
 

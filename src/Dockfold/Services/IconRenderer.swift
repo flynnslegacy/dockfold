@@ -1,8 +1,8 @@
 import AppKit
 import SwiftUI
-import NidoCore
+import DockfoldCore
 
-/// Draws the folder icons (frosted squircle with a 3×3 grid of app icons) and Nido's own icon.
+/// Draws the folder icons (frosted squircle with a 3×3 grid of app icons) and Dockfold's own icon.
 struct IconRenderer: Sendable {
     private static let iconsetSizes: [(name: String, pixels: Int)] = [
         ("16x16", 16), ("16x16@2x", 32), ("32x32", 32), ("32x32@2x", 64),
@@ -45,7 +45,7 @@ struct IconRenderer: Sendable {
         }
     }
 
-    /// Nido's icon: a warm gradient squircle holding a 3×3 grid of light tiles.
+    /// Dockfold's icon: a warm gradient squircle holding a 3×3 grid of light tiles.
     func appIconBitmap(pixels: Int) -> NSBitmapImageRep {
         draw(pixels: pixels) { canvas in
             let body = FolderIconLayout.bodyRect(canvas: canvas)

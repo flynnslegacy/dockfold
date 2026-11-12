@@ -1,5 +1,5 @@
 import AppKit
-import NidoCore
+import DockfoldCore
 
 /// Shows and hides the bubble above the folder's Dock tile.
 final class FolderPanelController {

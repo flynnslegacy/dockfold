@@ -1,6 +1,6 @@
 import AppKit
 import SwiftUI
-import NidoCore
+import DockfoldCore
 
 /// Whether an app of the Dock already sits in a folder.
 enum Membership: Equatable {
@@ -27,11 +27,11 @@ final class ManagerModel: ObservableObject {
     private let store: FolderStoring
     private let dock: DockServicing
     private let builder: FolderBuilding
-    private let paths: NidoPaths
+    private let paths: DockfoldPaths
     private let renderer = IconRenderer()
     private var previewCache: [String: NSImage] = [:]
 
-    init(store: FolderStoring, dock: DockServicing, builder: FolderBuilding, paths: NidoPaths) {
+    init(store: FolderStoring, dock: DockServicing, builder: FolderBuilding, paths: DockfoldPaths) {
         self.store = store
         self.dock = dock
         self.builder = builder
@@ -184,8 +184,8 @@ final class ManagerModel: ObservableObject {
 
     func restoreDock() {
         let alert = NSAlert()
-        alert.messageText = "Remettre le Dock comme avant Nido ?"
-        alert.informativeText = "Le Dock retrouve les icônes qu'il avait avant ta première modification avec Nido. Tes dossiers restent enregistrés ici : tu pourras les réappliquer."
+        alert.messageText = "Remettre le Dock comme avant Dockfold ?"
+        alert.informativeText = "Le Dock retrouve les icônes qu'il avait avant ta première modification avec Dockfold. Tes dossiers restent enregistrés ici : tu pourras les réappliquer."
         alert.addButton(withTitle: "Restaurer")
         alert.addButton(withTitle: "Annuler")
         guard alert.runModal() == .alertFirstButtonReturn else { return }

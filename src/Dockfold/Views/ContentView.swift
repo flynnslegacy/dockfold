@@ -1,5 +1,5 @@
 import SwiftUI
-import NidoCore
+import DockfoldCore
 
 struct ContentView: View {
     @ObservedObject var model: ManagerModel
@@ -101,7 +101,7 @@ struct ApplyBar: View {
             Spacer()
             Button("Restaurer le Dock d'origine…") { model.restoreDock() }
                 .disabled(!model.hasBackup || model.phase == .applying)
-                .help("Remet le Dock exactement comme avant la première modification par Nido")
+                .help("Remet le Dock exactement comme avant la première modification par Dockfold")
             Button("Appliquer au Dock") { Task { await model.apply() } }
                 .buttonStyle(.borderedProminent)
                 .disabled(!model.isDirty || model.phase == .applying)

@@ -1,6 +1,6 @@
 import XCTest
-import NidoCore
-@testable import Nido
+import DockfoldCore
+@testable import Dockfold
 
 // MARK: - Test doubles
 
@@ -29,12 +29,12 @@ final class FakeDock: DockServicing {
 }
 
 final class FakeBuilder: FolderBuilding, @unchecked Sendable {
-    let paths: NidoPaths
+    let paths: DockfoldPaths
     var failure: Error?
     private(set) var built: [String] = []
     private(set) var removed: [UUID] = []
 
-    init(paths: NidoPaths) { self.paths = paths }
+    init(paths: DockfoldPaths) { self.paths = paths }
 
     func build(_ folder: DockFolder) throws -> URL {
         if let failure { throw failure }
@@ -59,7 +59,7 @@ final class ManagerModelTests: XCTestCase {
     private let word = "/Applications/Microsoft Word.app"
     private let excel = "/Applications/Microsoft Excel.app"
     private let notion = "/Applications/Notion.app"
-    private let paths = NidoPaths(root: URL(fileURLWithPath: "/tmp/nido-tests"))
+    private let paths = DockfoldPaths(root: URL(fileURLWithPath: "/tmp/dockfold-tests"))
 
     private var dock: FakeDock!
     private var builder: FakeBuilder!

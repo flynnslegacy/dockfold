@@ -1,9 +1,9 @@
 import AppKit
-import NidoCore
+import DockfoldCore
 
 let arguments = CommandLine.arguments
 
-// Build-time helper: renders Nido's own icon (used by scripts/build-app.sh).
+// Build-time helper: renders Dockfold's own icon (used by scripts/build-app.sh).
 if let index = arguments.firstIndex(of: "--export-iconset"), index + 1 < arguments.count {
     do {
         try IconRenderer().exportAppIconset(to: URL(fileURLWithPath: arguments[index + 1]))
@@ -19,7 +19,7 @@ if let index = arguments.firstIndex(of: "--build-folder"), index + 1 < arguments
     do {
         let data = try Data(contentsOf: URL(fileURLWithPath: arguments[index + 1]))
         let folder = try JSONDecoder().decode(DockFolder.self, from: data)
-        let builder = FolderBuilder(paths: .standard, templateURL: Bundle.main.url(forResource: "NidoFolder", withExtension: "app"))
+        let builder = FolderBuilder(paths: .standard, templateURL: Bundle.main.url(forResource: "DockfoldFolder", withExtension: "app"))
         print(try builder.build(folder).path)
         exit(0)
     } catch {
